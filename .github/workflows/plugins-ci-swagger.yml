@@ -27,7 +27,7 @@ jobs:
         run: npm run prepare
 
       - name: Run Tests
-        run: npm test:ci
+        run: npm run test:ci
 
   automerge:
     needs: test
