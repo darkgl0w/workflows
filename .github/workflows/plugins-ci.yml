@@ -2,9 +2,15 @@ name: Plugin CI
 
 on:
   workflow_call:
+    inputs:
+      lint:
+        description: 'Set to true to run linting scripts.'
+        required: false
+        type: boolean
 
 jobs:
   linter:
+    if: inputs.lint == true
     runs-on: ubuntu-latest
 
     steps:
