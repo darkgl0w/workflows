@@ -29,6 +29,7 @@ jobs:
 
   test:
     needs: linter
+      - if: inputs.lint == true
     runs-on: ${{ matrix.os }}
 
     strategy:
