@@ -4,7 +4,11 @@ on:
   workflow_call:
 
 jobs:
+  linter:
+    uses: darkgl0w/workflows/.github/workflows/linter-ci.yml@linter-ci
+
   test:
+    needs: linter
     runs-on: ${{ matrix.os }}
 
     strategy:
