@@ -27,8 +27,8 @@ jobs:
       - name: Lint code
         run: npm run lint
 
-  if: inputs.lint == true
   test:
+    if: inputs.lint == true
     needs: linter
     runs-on: ${{ matrix.os }}
 
@@ -52,8 +52,8 @@ jobs:
         run: npm test
 
 
-  if: inputs.lint == false
   test:
+    if: inputs.lint == false
     runs-on: ${{ matrix.os }}
 
     strategy:
