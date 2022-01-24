@@ -25,9 +25,9 @@ jobs:
         run: npm i --ignore-scripts
 
       - name: Lint code
-        run:
+        run: npm run lint
 
-  if: inputs.lint == true npm run lint
+  if: inputs.lint == true
   test:
     needs: linter
     runs-on: ${{ matrix.os }}
