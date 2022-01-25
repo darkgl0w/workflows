@@ -4,8 +4,9 @@ on:
   workflow_call:
     inputs:
       disable-lint:
-        description: 'Set to true to skip running the linting scripts.'
+        description: 'Set to false to run linting scripts.'
         required: false
+        default: true
         type: boolean
 
 jobs:
