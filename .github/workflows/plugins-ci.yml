@@ -3,10 +3,9 @@ name: Plugin CI
 on:
   workflow_call:
     inputs:
-      lint:
-        description: 'Set to false to force running the linting scripts.'
+      disable-lint:
+        description: 'Set to true to skip running the linting scripts.'
         required: false
-        default: true
         type: boolean
 
 jobs:
@@ -25,7 +24,7 @@ jobs:
         run: npm i --ignore-scripts
 
       - name: Lint code
-        run: npm run lint --if-present=${{ inputs.lint }}
+        run: npm run lint --if-present=${{ inputs.enable-lint }}
 
   test:
     needs: linter
