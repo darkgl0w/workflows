@@ -18,8 +18,8 @@ jobs:
         if: ${{ inputs.lint == false}}
         run: exit 0
 
-        if: ${{ inputs.lint == true}}
       - uses: actions/checkout@v2
+        if: ${{ inputs.lint == true}}
 
       - name: Use Node.js
         if: ${{ inputs.lint == true}}
