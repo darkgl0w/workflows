@@ -6,7 +6,7 @@ on:
       disable-lint:
         description: 'Set to false to run linting scripts.'
         required: false
-        default: true
+        default: false
         type: boolean
 
 jobs:
