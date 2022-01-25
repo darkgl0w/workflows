@@ -8,6 +8,11 @@ on:
         required: false
         default: false
         type: boolean
+      test-script-name:
+        description: 'Customize the test script name.'
+        required: false
+        default: 'test'
+        type: string
 
 jobs:
   linter:
@@ -55,7 +60,7 @@ jobs:
         run: npm i --ignore-scripts
 
       - name: Run Tests
-        run: npm test
+        run: npm run ${{ inputs.test-script-name }}
 
   automerge:
     needs: test
