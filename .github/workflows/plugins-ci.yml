@@ -18,6 +18,10 @@ on:
         required: false
         default: 'test'
         type: string
+      run-on-node-current-branch:
+        description: 'Set to true to include Node.js current branch to the test matrix.'
+        default: false
+        type: boolean
 
 jobs:
   linter:
