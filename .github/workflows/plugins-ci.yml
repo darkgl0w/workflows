@@ -50,7 +50,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: ${{ fromJSON(input.node-matrix) }}
+        node-version: ${{ fromJSON(inputs.node-matrix) }}
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v2
