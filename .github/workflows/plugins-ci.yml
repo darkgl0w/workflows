@@ -51,8 +51,8 @@ jobs:
       matrix:
         node-version: [10, 12, 14, 16]
         os: [macos-latest, ubuntu-latest, windows-latest]
+        if: ${{ run-on-node-current-branch == true }}
         include:
-          if: ${{ run-on-node-current-branch == true }}
           - node-version: 17
     steps:
       - uses: actions/checkout@v2
