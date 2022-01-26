@@ -18,6 +18,11 @@ on:
         required: false
         default: 'test'
         type: string
+      node-matrix:
+        description: 'Customize the node matrix.'
+        required: false
+        default: '[10, 12, 14, 16]'
+        type: string
 
 jobs:
   linter:
@@ -45,7 +50,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [10, 12, 14, 16]
+        node-version: ${{ fromJSON(input.node-matrix) }}
         os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v2
