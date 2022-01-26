@@ -18,7 +18,7 @@ on:
         required: false
         default: 'test'
         type: string
-      run-on-node-current-branch:
+      node-current:
         description: 'Set to true to include Node.js current branch to the test matrix.'
         required: false
         default: false
@@ -52,7 +52,7 @@ jobs:
       matrix:
         node-version: [10, 12, 14, 16]
         os: [macos-latest, ubuntu-latest, windows-latest]
-        if: ${{ run-on-node-current-branch == true }}
+        if: ${{ node-current == true }}
         include:
           - node-version: 17
     steps:
