@@ -8,7 +8,12 @@ on:
         required: false
         default: false
         type: boolean
-      test-script-name:
+      lint-script:
+        description: 'Customize the lint script name.'
+        required: false
+        default: 'lint'
+        type: string
+      test-script:
         description: 'Customize the test script name.'
         required: false
         default: 'test'
@@ -17,50 +22,44 @@ on:
 jobs:
   linter:
     runs-on: ubuntu-latest
-
     steps:
       - name: Skip lint
         if: ${{ inputs.lint == false}}
         run: exit 0
-
       - uses: actions/checkout@v2
         if: ${{ inputs.lint == true}}
-
       - name: Use Node.js
         if: ${{ inputs.lint == true}}
         uses: actions/setup-node@v2
         with:
           node-version: 16
-
       - name: Install Dependencies
         if: ${{ inputs.lint == true}}
         run: npm i --ignore-scripts
-
       - name: Lint code
         if: ${{ inputs.lint == true}}
-        run: npm run lint
+        run: npm run ${{ inputs.lint-script }}
 
   test:
     needs: linter
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         node-version: [10, 12, 14, 16]
         os: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+          if: ${{ run-on-node-current-branch == true }}
+          - node-version: 17
     steps:
       - uses: actions/checkout@v2
-
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: Install Dependencies
         run: npm i --ignore-scripts
-
       - name: Run Tests
-        run: npm run ${{ inputs.test-script-name }}
+        run: npm run ${{ inputs.test-script }}
 
   automerge:
     needs: test
